@@ -1,0 +1,8 @@
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            default_session: selenium2
+            browser_name: firefox
+            base_url: http://localhost:8888/app_test.php
+            selenium2:
+                capabilities: { "browser": "firefox", "version": "28"}
