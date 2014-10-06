@@ -4,12 +4,15 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends MinkContext implements Context, SnippetAcceptingContext
 {
+
+    protected $em;
 
     /**
      * Initializes context.
@@ -18,8 +21,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
-    {}
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
 
     /**
      * @Given I am on the :arg1 page
@@ -43,5 +48,10 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             $this->fillField("_password", $password),
             $this->pressButton("Login")
         ];
+    }
+
+    protected function getEntityManager()
+    {
+        return $this->em;
     }
 }
