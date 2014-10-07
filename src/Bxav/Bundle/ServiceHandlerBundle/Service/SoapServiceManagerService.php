@@ -1,19 +1,21 @@
 <?php
 namespace Bxav\Bundle\ServiceHandlerBundle\Service;
 
+use Bxav\Bundle\ServiceHandlerBundle\Model\ServiceProviderChain;
+
 class SoapServiceManagerService
 {
 
     protected $serviceChain;
 
-    public function __construct($serviceChain)
+    public function __construct(ServiceProviderChain $serviceChain)
     {
         $this->serviceChain = $serviceChain;
     }
 
     /**
      * get all services
-     * 
+     *
      * @return string $services
      */
     public function getSoapServices()

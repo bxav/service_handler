@@ -1,0 +1,8 @@
+suites:
+    common:
+        namespace: Bxav\Bundle\CommonSoapBundle
+        spec_path: src/Bxav/Bundle/CommonSoapBundle
+ 
+    handler:
+        namespace: Bxav\Bundle\ServiceHandlerBundle
+        spec_path: src/Bxav/Bundle/ServiceHandlerBundle

@@ -52,6 +52,10 @@ class ServiceProvider
         return $this->service;
     }
     
+    /**
+     * 
+     * @return string
+     */
     public function getServiceClassName()
     {
         return get_class($this->getService());
