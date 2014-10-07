@@ -1,0 +1,11 @@
+bxav_service_handler_api_manager:
+    path:     /
+    defaults: { _controller: bxav_service_handler.controller:serverAction }
+
+bxav_service_handler_api_manager_wsdl:
+    path:     /wsdl
+    defaults: { _controller: bxav_service_handler.controller:getWsdlAction }
+
+bxav_service_handler_api_wsdl_dumper:
+    path:     /dump
+    defaults: { _controller: bxav_service_handler.controller:dumperAction }

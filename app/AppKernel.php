@@ -25,6 +25,9 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Bxav\Bundle\ExtraSoapApiBundle\BxavExtraSoapApiBundle(),
+
+            new Bxav\Bundle\ServiceHandlerBundle\BxavServiceHandlerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

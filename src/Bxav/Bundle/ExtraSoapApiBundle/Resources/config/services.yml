@@ -1,0 +1,22 @@
+parameters:
+    #service
+    bxav_extra_soap_api.service.class: Bxav\Bundle\ExtraSoapApiBundle\Service\DemoService
+
+services:
+
+    bxav_extra_soap_api.controller:
+        class: Bxav\Bundle\CommonSoapBundle\Controller\SoapController
+        arguments: [@bxav_extra_soap_api.service_provider]
+        
+    bxav_extra_soap_api.service:
+        class: %bxav_extra_soap_api.service.class%
+        
+    bxav_extra_soap_api.service_provider:
+        class: Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider
+        arguments: [@bxav_extra_soap_api.service]
+        calls:
+            - [setUrlLocation, ["@=service('router').generate('bxav_extra_soap_api_manager', [], true)"]]
+            - [setWsdlUrl, ["@=service('router').generate('bxav_extra_soap_api_manager_wsdl', [], true)"]]
+            - [setWsdlPath, ["@=service('kernel').locateResource('@BxavExtraSoapApiBundle/Resources/config/service.wsdl')"]]
+        tags:
+            - { name: bxav_service_handler.service_provider, type: extra_soap_api }

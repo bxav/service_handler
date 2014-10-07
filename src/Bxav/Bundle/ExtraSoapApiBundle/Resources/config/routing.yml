@@ -1,0 +1,11 @@
+bxav_extra_soap_api_manager:
+    path:     /extra
+    defaults: { _controller: bxav_extra_soap_api.controller:serverAction }
+
+bxav_extra_soap_api_manager_wsdl:
+    path:     /extra/wsdl
+    defaults: { _controller: bxav_extra_soap_api.controller:getWsdlAction }
+
+bxav_extra_soap_api_wsdl_dumper:
+    path:     /extra/dump
+    defaults: { _controller: bxav_extra_soap_api.controller:dumperAction }
