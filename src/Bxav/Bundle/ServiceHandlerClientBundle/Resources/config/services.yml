@@ -1,0 +1,51 @@
+parameters:
+    #controller
+    bxav_service_handler_client.controller.class: Bxav\Bundle\ServiceHandlerClientBundle\Controller\DemoController
+
+    #model
+    bxav_service_handler_client.soap_client.class: SoapClient
+    bxav_service_handler_client.soap_service_repository.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\SoapServiceRepository
+    bxav_service_handler_client.soap_client_factory.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\SoapClientFactory
+    bxav_service_handler_client.soap_service.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\SoapService
+    
+    bxav_service_handler_client.action_scanner.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionScanner
+    
+    bxav_service_handler_client.action_processor.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionProcessor
+    
+    
+    
+    #entity_factory
+    bxav_service_handler_client.soap_action_factory.class: Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapActionFactory
+    
+    bxav_service_handler_client.soap_service_factory.class: Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapServiceFactory
+    
+    
+services:
+
+    bxav_service_handler_client.controller:
+        class: %bxav_service_handler_client.controller.class%
+        arguments: [@bxav_service_handler_client.soap_service_repository, @doctrine.orm.entity_manager, @bxav_service_handler_client.action_scanner, @bxav_service_handler_client.action_processor]
+        
+    bxav_service_handler_client.soap_service_repository:
+        class: %bxav_service_handler_client.soap_service_repository.class%
+        arguments: ["http://127.0.0.1:8000/api/wsdl", @bxav_service_handler_client.soap_service_factory, @bxav_service_handler_client.action_processor]
+    
+    #factories
+    bxav_service_handler_client.soap_service_factory:
+        class: %bxav_service_handler_client.soap_service_factory.class%
+        
+    bxav_service_handler_client.soap_action_factory:
+        class: %bxav_service_handler_client.soap_action_factory.class%  
+    
+    bxav_service_handler_client.soap_client_factory:
+        class: %bxav_service_handler_client.soap_client_factory.class%
+        
+    #action helpers
+    bxav_service_handler_client.action_scanner:
+        class: %bxav_service_handler_client.action_scanner.class%
+        arguments: [@bxav_service_handler_client.soap_client_factory, @bxav_service_handler_client.soap_action_factory]
+        
+    bxav_service_handler_client.action_processor:
+        class: %bxav_service_handler_client.action_processor.class%
+        arguments: [@bxav_service_handler_client.soap_client_factory]         
+        

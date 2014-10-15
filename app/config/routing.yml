@@ -1,3 +1,7 @@
+bxav_service_handler_client:
+    resource: "@BxavServiceHandlerClientBundle/Resources/config/routing.yml"
+    prefix:   /demo
+
 bxav_extra_soap_api:
     resource: "@BxavExtraSoapApiBundle/Resources/config/routing.yml"
     prefix:   /api

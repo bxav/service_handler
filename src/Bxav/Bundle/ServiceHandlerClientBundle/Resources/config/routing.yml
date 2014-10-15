@@ -1,0 +1,7 @@
+bxav_service_handler_client_demo:
+    path:     /client
+    defaults: { _controller: bxav_service_handler_client.controller:indexAction }
+    
+bxav_service_handler_client_sync:
+    path:     /sync
+    defaults: { _controller: bxav_service_handler_client.controller:syncAction }

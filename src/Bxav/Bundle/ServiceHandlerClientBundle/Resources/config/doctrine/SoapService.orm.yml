@@ -1,0 +1,11 @@
+Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapService:
+    type: entity
+    table: soap_service
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    oneToMany:
+        actions:
+          targetEntity: SoapAction
+          mappedBy: service

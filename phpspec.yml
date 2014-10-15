@@ -6,3 +6,7 @@ suites:
     handler:
         namespace: Bxav\Bundle\ServiceHandlerBundle
         spec_path: src/Bxav/Bundle/ServiceHandlerBundle
+        
+    client:
+        namespace: Bxav\Bundle\ServiceHandlerClientBundle
+        spec_path: src/Bxav/Bundle/ServiceHandlerClientBundle

@@ -1,0 +1,19 @@
+Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapAction:
+    type: entity
+    table: soap_action
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        methodName:
+            type: string
+            length: 100
+            nullable: false
+    manyToOne:
+        service:
+          targetEntity: SoapService
+          inversedBy: actions
+          joinColumn:
+            name: service_id
+            referencedColumnName: id
