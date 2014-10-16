@@ -41,6 +41,7 @@ class SoapService
     {
         $this->actions = $actions;
     }
+    
     public function getActions()
     {           
         return $this->actions;

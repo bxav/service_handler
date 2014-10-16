@@ -5,6 +5,11 @@ Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapService:
         id:
             type: integer
             generator: { strategy: AUTO }
+    fields:
+        wsdl:
+            type: string
+            length: 255
+            nullable: false
     oneToMany:
         actions:
           targetEntity: SoapAction

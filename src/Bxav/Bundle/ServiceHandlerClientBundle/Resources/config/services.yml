@@ -11,7 +11,7 @@ parameters:
     bxav_service_handler_client.action_scanner.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionScanner
     
     bxav_service_handler_client.action_processor.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionProcessor
-    
+    bxav_service_handler_client.service_synchronizer.class: Bxav\Bundle\ServiceHandlerClientBundle\Model\ServiceSynchronizer
     
     
     #entity_factory
@@ -24,7 +24,7 @@ services:
 
     bxav_service_handler_client.controller:
         class: %bxav_service_handler_client.controller.class%
-        arguments: [@bxav_service_handler_client.soap_service_repository, @doctrine.orm.entity_manager, @bxav_service_handler_client.action_scanner, @bxav_service_handler_client.action_processor]
+        arguments: [@bxav_service_handler_client.soap_service_repository, @bxav_service_handler_client.action_scanner, @bxav_service_handler_client.action_processor, @bxav_service_handler_client.service_synchronizer]
         
     bxav_service_handler_client.soap_service_repository:
         class: %bxav_service_handler_client.soap_service_repository.class%
@@ -47,5 +47,10 @@ services:
         
     bxav_service_handler_client.action_processor:
         class: %bxav_service_handler_client.action_processor.class%
-        arguments: [@bxav_service_handler_client.soap_client_factory]         
+        arguments: [@bxav_service_handler_client.soap_client_factory]  
+        
+    bxav_service_handler_client.service_synchronizer:
+        class: %bxav_service_handler_client.service_synchronizer.class%
+        arguments: [@bxav_service_handler_client.soap_service_repository, @doctrine.orm.entity_manager, @bxav_service_handler_client.action_scanner]
+             
         

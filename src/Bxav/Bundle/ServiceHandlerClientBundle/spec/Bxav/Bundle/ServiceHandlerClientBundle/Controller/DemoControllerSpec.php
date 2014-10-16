@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\SoapServiceRepository;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionScanner;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionProcessor;
+use Bxav\Bundle\ServiceHandlerClientBundle\Model\ServiceSynchronizer;
 
 class DemoControllerSpec extends ObjectBehavior
 {
@@ -18,10 +19,10 @@ class DemoControllerSpec extends ObjectBehavior
     
     function let(
         SoapServiceRepository $serviceRepo,
-        EntityManager $em,
         ActionScanner $actionScanner,
-        ActionProcessor $actionProcessor
+        ActionProcessor $actionProcessor,
+        ServiceSynchronizer $synchronizer
     ) {
-        $this->beConstructedWith($serviceRepo, $em, $actionScanner, $actionProcessor);
+        $this->beConstructedWith($serviceRepo, $actionScanner, $actionProcessor, $synchronizer);
     }
 }

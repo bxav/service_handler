@@ -3,10 +3,10 @@ namespace Bxav\Bundle\ServiceHandlerClientBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\SoapServiceRepository;
-use Doctrine\ORM\EntityManager;
-use Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapAction;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionScanner;
 use Bxav\Bundle\ServiceHandlerClientBundle\Model\ActionProcessor;
+
+use Bxav\Bundle\ServiceHandlerClientBundle\Model\ServiceSynchronizer;
 
 class DemoController
 {
@@ -19,16 +19,18 @@ class DemoController
 
     protected $actionProcessor;
     
+    protected $synchronizer;
+    
     public function __construct(
         SoapServiceRepository $serviceRepo,
-        EntityManager $em,
         ActionScanner $actionScanner,
-        ActionProcessor $actionProcessor
+        ActionProcessor $actionProcessor,
+        ServiceSynchronizer $synchronizer
     ) {
         $this->serviceRepo = $serviceRepo;
-        $this->em = $em;
         $this->actionScanner = $actionScanner;
         $this->actionProcessor = $actionProcessor;
+        $this->synchronizer = $synchronizer;
     }
 
     public function indexAction()
@@ -50,20 +52,8 @@ class DemoController
 
     public function syncAction()
     {
-        $res = $this->serviceRepo->getAll();
+        $this->synchronizer->synchronize();
         
-        foreach ($res as $service) {
-            
-            $service->setActions($this->actionScanner->scanServiceForAction($service));
-            $actions = $service->getActions();
-            foreach ($actions as $action) {
-                $this->em->persist($action);
-            }
-            $this->em->persist($service);
-        }
-        
-        $this->em->flush();
-        
-        return new JsonResponse($res[0]->getActions());
+        return new JsonResponse();
     }
 }
