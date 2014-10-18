@@ -22,4 +22,28 @@ class SoapActionSpec extends ObjectBehavior
     {
         $this->getMethodName()->shouldNotBeNull();
     }
+    
+    function it_may_have_mutable_arguments()
+    {
+        $arguments = [
+            [
+                'type' => 'whatever',
+                'value' => 'someValue'
+            ],
+            [
+                'type' => 'whatever',
+                'value' => 'someOtherValue'
+            ]
+        ];
+        $this->setArguments($arguments);
+        $this->getArguments()->shouldReturn($arguments);
+        $this->getValueArguments()->shouldReturn(['someValue','someOtherValue']);
+    }
+    
+    function it_may_have_mutable_return_type($returnType)
+    {
+        $this->setReturnType($returnType);
+        $this->getReturnType()->shouldReturn($returnType);
+    }
+
 }

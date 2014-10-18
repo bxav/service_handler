@@ -27,6 +27,7 @@ class ActionProcessorSpec extends ObjectBehavior
     {
         $action->getService()->willReturn($service);
         $action->getMethodName()->willReturn("methodName");
+        $action->getValueArguments()->willReturn([]);
         
         $service->getWsdl()->willReturn("string");
         

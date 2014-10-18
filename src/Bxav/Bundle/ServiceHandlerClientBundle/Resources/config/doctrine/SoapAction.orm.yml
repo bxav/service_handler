@@ -10,6 +10,14 @@ Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapAction:
             type: string
             length: 100
             nullable: false
+        returnType:
+            type: string
+            length: 100
+            nullable: true
+        arguments:
+            type: string
+            length: 255
+            nullable: true
     manyToOne:
         service:
           targetEntity: SoapService

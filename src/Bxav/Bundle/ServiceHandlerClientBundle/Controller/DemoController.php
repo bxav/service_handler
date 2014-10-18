@@ -46,7 +46,6 @@ class DemoController
             }
         }
         
-        
         return new JsonResponse();
     }
 

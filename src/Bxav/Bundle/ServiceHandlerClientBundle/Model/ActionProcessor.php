@@ -15,7 +15,7 @@ class ActionProcessor
     public function process(SoapAction $action)
     {
         $client = $this->clientFactory->get($action->getService()->getWsdl());
-        return $client->call($action->getMethodName());
+        return $client->call($action->getMethodName(), $action->getValueArguments());
     }
     
     public function processByServiceAndMethodName(SoapService $service, $methodName)

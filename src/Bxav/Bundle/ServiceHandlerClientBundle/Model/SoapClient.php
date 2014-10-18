@@ -42,7 +42,10 @@ class SoapClient
         $res = [];
         foreach ($this->client->__getFunctions() as $functionPrototype) {
             $ready = str_replace([' ','(',')'], ',', $functionPrototype);
+            $ready = str_replace([',,'], ',', $ready);
+            
             $res[] = explode(',',$ready);
+            
         }
         
         return $res;
