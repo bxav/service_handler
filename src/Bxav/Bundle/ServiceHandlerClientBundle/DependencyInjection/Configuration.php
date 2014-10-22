@@ -20,9 +20,22 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('bxav_service_handler_client');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+
+                ->arrayNode('service_handler')
+                    ->children()
+                        ->scalarNode('url')->end()
+                    ->end()
+                ->end()
+                ->arrayNode('security')
+                    ->children()
+                        ->integerNode('client_id')->end()
+                        ->scalarNode('client_secret')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

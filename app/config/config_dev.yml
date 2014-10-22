@@ -28,6 +28,10 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
+        
+bxav_service_handler_client:
+    service_handler:
+        url: http://127.0.0.1:8000/api/wsdl
 
 assetic:
     use_controller: "%use_assetic_controller%"

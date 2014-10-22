@@ -19,7 +19,9 @@ parameters:
     
     bxav_service_handler_client.soap_service_factory.class: Bxav\Bundle\ServiceHandlerClientBundle\Entity\SoapServiceFactory
     
+    bxav_service_handler_client.service_handler.url: http://127.0.0.1:8000/api/wsdl
     
+        
 services:
 
     bxav_service_handler_client.controller:
@@ -28,7 +30,7 @@ services:
         
     bxav_service_handler_client.soap_service_repository:
         class: %bxav_service_handler_client.soap_service_repository.class%
-        arguments: ["http://127.0.0.1:8000/api/wsdl", @bxav_service_handler_client.soap_service_factory, @bxav_service_handler_client.action_processor]
+        arguments: [%bxav_service_handler_client.service_handler.url%, @bxav_service_handler_client.soap_service_factory, @bxav_service_handler_client.action_processor]
     
     #factories
     bxav_service_handler_client.soap_service_factory:
