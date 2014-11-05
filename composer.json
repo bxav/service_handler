@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler":"~2.0",
         "friendsofsymfony/user-bundle":"~2.0@dev",
         "sonata-project/admin-bundle":"*",
-        "sonata-project/doctrine-orm-admin-bundle":"*"
+        "sonata-project/doctrine-orm-admin-bundle":"*",
+        "guzzlehttp/guzzle": "~5.0"
     },
     "require-dev":{
         "sensio/generator-bundle":"~2.3",

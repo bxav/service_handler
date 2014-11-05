@@ -26,7 +26,8 @@ class AppKernel extends Kernel
             
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Bxav\Bundle\ExtraSoapApiBundle\BxavExtraSoapApiBundle(),
-
+            new Bxav\Bundle\ResellerClubBundle\BxavResellerClubBundle(),
+            
             new Bxav\Bundle\ServiceHandlerBundle\BxavServiceHandlerBundle(),
         );
 

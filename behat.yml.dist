@@ -1,9 +1,18 @@
 default:
     suites:
-      default:
-          contexts:
-              - FeatureContext:
-                  em:   '@doctrine.orm.entity_manager'
+          default:
+              contexts:
+                  - FeatureContext:
+                      em:   '@doctrine.orm.entity_manager'       
+          resellerclub:
+              contexts:
+                - Bxav\Component\ResellerClub\Behat\ResellerClubContext:
+                    urlApi:   'https://test.httpapi.com/api'
+                    userId:   'userId'
+                    apiKey:   'apiKey'  
+              filters:
+                tags: "@resellerclub"
+
     gherkin:
       filters:
         tags: ~@ignore

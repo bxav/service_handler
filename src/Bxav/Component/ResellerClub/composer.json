@@ -1,0 +1,32 @@
+{
+    "name":"bxav/resellerclub",
+    "description":"client for ResellerClub Api",
+    "type":"library",
+    "authors":[
+        {
+            "name":"Bxav",
+            "email":"xavier.b@zoho.com"
+        }
+    ],
+    "keywords":[
+        "ResellerClub http api"
+    ],
+    "license":[
+        "MIT"
+    ],
+    "require":{
+        "php":">=5.4",
+        "guzzlehttp/guzzle":"~5.0"
+    },
+    "require-dev":{
+        "behat/behat":"~3.0",
+        "phpspec/phpspec":"~2.0"
+    },
+    "autoload":{
+        "psr-0":{
+            "Bxav\\Component\\ResellerClub":""
+        }
+    },
+    "target-dir":"Bxav/Component/ResellerClub",
+    
+}

@@ -10,3 +10,11 @@ suites:
     client:
         namespace: Bxav\Bundle\ServiceHandlerClientBundle
         spec_path: src/Bxav/Bundle/ServiceHandlerClientBundle
+
+    resellerclub-bundle:
+        namespace: Bxav\Bundle\ResellerClubBundle
+        spec_path: src/Bxav/Bundle/ResellerClubBundle
+
+    resellerclub:
+        namespace: Bxav\Component\ResellerClub
+        spec_path: src/Bxav/Component/ResellerClub
