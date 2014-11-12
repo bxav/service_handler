@@ -1,0 +1,11 @@
+bxav_domain_manager:
+    path:     /domain
+    defaults: { _controller: bxav_domain.controller:serverAction }
+
+bxav_domain_manager_wsdl:
+    path:     /domain/wsdl
+    defaults: { _controller: bxav_domain.controller:getWsdlAction }
+
+bxav_domain_wsdl_dumper:
+    path:     /domain/dump
+    defaults: { _controller: bxav_domain.controller:dumperAction }

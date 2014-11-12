@@ -1,0 +1,22 @@
+parameters:
+    #service
+    bxav_domain.service.class: Bxav\Bundle\DomainBundle\Service\DemoService
+
+services:
+
+    bxav_domain.controller:
+        class: Bxav\Bundle\CommonSoapBundle\Controller\SoapController
+        arguments: [@bxav_domain.service_provider]
+        
+    bxav_domain.service:
+        class: %bxav_domain.service.class%
+        
+    bxav_domain.service_provider:
+        class: Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider
+        arguments: [@bxav_domain.service]
+        calls:
+            - [setUrlLocation, ["@=service('router').generate('bxav_domain_manager', [], true)"]]
+            - [setWsdlUrl, ["@=service('router').generate('bxav_domain_manager_wsdl', [], true)"]]
+            - [setWsdlPath, ["@=service('kernel').locateResource('@BxavDomainBundle/Resources/config/service.wsdl')"]]
+        tags:
+            - { name: bxav_service_handler.service_provider, type: domain }
