@@ -16,3 +16,7 @@ Feature:
         When I register "tralala" on "email"
         Then I should get register
         
+    Scenario: Get customer details from system
+        When I ask the customer "bob"
+        Then I should get "bob" details
+        

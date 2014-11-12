@@ -55,4 +55,32 @@ class CustomerManager
             'admin_id' => (int) $obj['Contact']['admin']
         ];
     }
+    
+    public function findByUsername($username)
+    {
+        $bodyResponce = $this->client->get('/customers/details.json', [
+            'username' => $username
+            
+        ]);
+        return $this->createCustomerWithResponce($bodyResponce);
+    }
+    
+    protected function createCustomerWithResponce($customerDetails)
+    {
+        $customer = new Customer($customerDetails['username']);
+        $customer->setName($customerDetails['name'])
+            ->setId((int)$customerDetails['customerid'])
+            ->setCompany($customerDetails['company'])
+            ->setAddress(
+                new Address(
+                    $customerDetails['address1'],
+                    $customerDetails['city'], $customerDetails['state'],
+                    $customerDetails['country'],
+                    $customerDetails['zipcode']
+                )
+            )
+            ->setPhone(new Phone($customerDetails['telnocc'], $customerDetails['telno']))
+            ->setLang($customerDetails['langpref']);
+        return $customer;
+    }
 }

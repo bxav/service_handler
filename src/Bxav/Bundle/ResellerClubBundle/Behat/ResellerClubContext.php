@@ -81,6 +81,25 @@ class ResellerClubContext extends RawMinkContext implements KernelAwareContext, 
         $this->customer = $customerManager->register($customer);
     }
     
+    /**
+     * @When I ask the customer :name
+     */
+    public function iAskTheCustomer($name)
+    {
+        $customerManager = $this->getService('bxav_reseller_club.customer_manager');
+        $customer = $customerManager->findByUsername($this->customer->getUsername());
+        if (!(($customer->getId() == $this->customer->getId()) && ($customer !== $this->customer)))
+            throw new \Exception('not the same details or not from the remote api');
+    }
+    
+    /**
+     * @Then I should get :name details
+     */
+    public function iShouldGetDetails($name)
+    {
+        return true;
+    }
+    
     
     /**
      * @var KernelInterface

@@ -54,6 +54,9 @@ class Customer
     
     public function setId($id)
     {
+        if (!is_int($id)) {
+            throw new \Exception('invalid argument');
+        }
         $this->info['id'] = $id;
         return $this;
     }

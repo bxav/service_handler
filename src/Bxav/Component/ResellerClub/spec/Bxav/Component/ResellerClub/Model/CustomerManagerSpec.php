@@ -56,4 +56,24 @@ class CustomerManagerSpec extends ObjectBehavior
     
         $this->delete($customer)->shouldReturn(true);
     }
+    
+    function it_finds_customer_by_username()
+    {
+        $this->client->get('/customers/details.json', Argument::type('array'))->willReturn([
+            'customerid' => '123456',
+            'username' => 'bob@example.com',
+            'resellerid' => '123456',
+            'name' => '123456',
+            'company' => '123456',
+            'address1' => '123456',
+            'city' => '123456',
+            'state' => '123456',
+            'country' => '123456',
+            'zipcode' => '123456',
+            'telnocc' => '123456',
+            'telno' => '123456',
+            'langpref' => '123456',
+        ]);
+        $this->findByUsername('bob@example.com')->shouldBeAnInstanceOf('Bxav\Component\ResellerClub\Model\Customer');
+    }
 }
