@@ -3,7 +3,19 @@ default:
           default:
               contexts:
                   - FeatureContext:
-                      em:   '@doctrine.orm.entity_manager'       
+                      em:   '@doctrine.orm.entity_manager'
+          domainbundle:
+              contexts:
+                - Bxav\Bundle\DomainBundle\Behat\DomainContext:
+              filters:
+                tags: "@domain"
+          
+          resellerclubbundle:
+              contexts:
+                - Bxav\Bundle\ResellerClubBundle\Behat\ResellerClubContext:
+              filters:
+                tags: "@resellerclub"
+                    
           resellerclub:
               contexts:
                 - Bxav\Component\ResellerClub\Behat\ResellerClubContext:
