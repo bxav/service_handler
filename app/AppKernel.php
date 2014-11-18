@@ -24,15 +24,17 @@ class AppKernel extends Kernel
             
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             
-            new Sonata\AdminBundle\SonataAdminBundle(),
             new Bxav\Bundle\ExtraSoapApiBundle\BxavExtraSoapApiBundle(),
             new Bxav\Bundle\ResellerClubBundle\BxavResellerClubBundle(),
+            new Bxav\Bundle\UserBundle\BxavUserBundle(),
             
             new Bxav\Bundle\ServiceHandlerBundle\BxavServiceHandlerBundle(),
+            
+
+            new Sonata\AdminBundle\SonataAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Bxav\Bundle\ServiceHandlerClientBundle\BxavServiceHandlerClientBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

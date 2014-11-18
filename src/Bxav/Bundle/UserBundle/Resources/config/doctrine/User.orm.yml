@@ -1,0 +1,14 @@
+Bxav\Bundle\UserBundle\Entity\User:
+    type:  entity
+    table: user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        apiToken:
+            type: string
+            length: 100
+            nullable: true
+            unique: true

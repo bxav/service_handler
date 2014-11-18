@@ -1,0 +1,22 @@
+parameters:
+    #service
+    bxav_user.service.class: Bxav\Bundle\UserBundle\Service\DemoService
+
+services:
+
+    bxav_user.controller:
+        class: Bxav\Bundle\CommonSoapBundle\Controller\SoapController
+        arguments: [@bxav_user.service_provider]
+        
+    bxav_user.service:
+        class: %bxav_user.service.class%
+        
+    bxav_user.service_provider:
+        class: Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider
+        arguments: [@bxav_user.service]
+        calls:
+            - [setUrlLocation, ["@=service('router').generate('bxav_user_manager', [], true)"]]
+            - [setWsdlUrl, ["@=service('router').generate('bxav_user_manager_wsdl', [], true)"]]
+            - [setWsdlPath, ["@=service('kernel').locateResource('@BxavUserBundle/Resources/config/service.wsdl')"]]
+        tags:
+            - { name: bxav_service_handler.service_provider, type: user }
