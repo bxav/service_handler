@@ -32,6 +32,9 @@ monolog:
 bxav_service_handler_client:
     service_handler:
         url: http://127.0.0.1:8000/api/wsdl
+    security:
+        client_id: admin
+        client_secret: admin
 
 assetic:
     use_controller: "%use_assetic_controller%"

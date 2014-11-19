@@ -8,9 +8,14 @@ class SoapClient
     
     protected $wsdl;
 
-    public function __construct($wsdl)
+    public function __construct($wsdl, $username, $pw)
     {
-        $this->client = new \SoapClient($wsdl);
+        $options = array(
+            'login' => $username,
+            'password' => $pw,
+        );
+        
+        $this->client = new \SoapClient($wsdl, $options);
         $this->wsdl = $wsdl;
     }
 

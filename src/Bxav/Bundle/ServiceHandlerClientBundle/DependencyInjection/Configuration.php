@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('security')
                     ->children()
-                        ->integerNode('client_id')->end()
+                        ->scalarNode('client_id')->end()
                         ->scalarNode('client_secret')->end()
                     ->end()
                 ->end()

@@ -1,7 +1,7 @@
 <?php
 namespace Bxav\Bundle\UserBundle\Service;
 
-class DemoService
+class UserService
 {
     public $test = "coucou"; 
 
@@ -27,6 +27,6 @@ class DemoService
      */
     public function addCustomer($userId, $customerName, $customerEmail)
     {
-        
+        return 'coucou';
     }
 }

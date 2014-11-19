@@ -27,5 +27,11 @@ class BxavServiceHandlerClientExtension extends Extension
         if (isset($config['service_handler']['url'])) {
             $container->setParameter('bxav_service_handler_client.service_handler.url', $config['service_handler']['url']);
         }
+        if (isset($config['security']['client_id'])) {
+            $container->setParameter('bxav_service_handler_client.security.client_id', $config['security']['client_id']);
+        }
+        if (isset($config['security']['client_secret'])) {
+            $container->setParameter('bxav_service_handler_client.security.client_secret', $config['security']['client_secret']);
+        }
     }
 }

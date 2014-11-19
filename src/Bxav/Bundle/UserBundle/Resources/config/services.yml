@@ -1,6 +1,6 @@
 parameters:
     #service
-    bxav_user.service.class: Bxav\Bundle\UserBundle\Service\DemoService
+    bxav_user.service.class: Bxav\Bundle\UserBundle\Service\UserService
 
 services:
 

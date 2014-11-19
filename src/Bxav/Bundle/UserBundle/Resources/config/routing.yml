@@ -1,11 +1,11 @@
 bxav_user_manager:
-    path:     /extra
+    path:     /user
     defaults: { _controller: bxav_user.controller:serverAction }
 
 bxav_user_manager_wsdl:
-    path:     /extra/wsdl
+    path:     /user/wsdl
     defaults: { _controller: bxav_user.controller:getWsdlAction }
 
 bxav_user_wsdl_dumper:
-    path:     /extra/dump
+    path:     /user/dump
     defaults: { _controller: bxav_user.controller:dumperAction }
