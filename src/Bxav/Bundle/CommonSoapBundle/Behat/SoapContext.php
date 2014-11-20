@@ -11,14 +11,33 @@ use Symfony\Component\HttpKernel\KernelInterface;
 /**
  * Defines application features from the specific context.
  */
-class SoapContext implements KernelAwareContext
+abstract class SoapContext implements KernelAwareContext
 {
-
-    protected $soapClientFactory;
-
-    public function __construct()
+    
+    abstract protected function getServiceProviderName();
+    
+    public function getSoapClient()
     {
-        $this->soapClientFactory = $this->getSoapFactory();
+        if ($this->client === null) {
+            $serviceProvider = $this->getService($this->getServiceProviderName());
+            $this->client = new \SoapClient($serviceProvider->getWsdlPath(), array(
+                'login' => 'admin',
+                'password' => 'admin'
+            ));
+        }
+        return $this->client;
+    }
+    
+    /**
+     * @BeforeScenario
+     */
+    public function initSoapCache()
+    {
+        ini_set("soap.wsdl_cache", "0");
+        ini_set("soap.wsdl_cache_enabled", "0");
+    
+        ini_set('soap.wsdl_cache_ttl', 0);
+    
     }
 
     /**
@@ -27,9 +46,6 @@ class SoapContext implements KernelAwareContext
      */
     protected $kernel;
 
-    /**
-     * @ERROR!!!
-     */
     public function setKernel(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
@@ -55,14 +71,5 @@ class SoapContext implements KernelAwareContext
     protected function getContainer()
     {
         return $this->kernel->getContainer();
-    }
-
-    protected function getSoapFactory()
-    {
-        $soapClientFactory = new \stdClass();
-        $soapClientFactory->create = function ($wsdl) {
-            return new \SoapClient($wsdl);
-        };
-        return $soapClientFactory;
     }
 }

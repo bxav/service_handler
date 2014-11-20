@@ -1,54 +1,51 @@
 <?php
-namespace Bxav\Bundle\DomainBundle\Behat;
+namespace Bxav\Bundle\UserBundle\Behat;
 
 use Bxav\Bundle\CommonSoapBundle\Behat\SoapContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Faker\Factory as FakerFactory;
 
 /**
  * Defines application features from the specific context.
  */
-class DomainContext extends SoapContext implements SnippetAcceptingContext
+class UserContext extends SoapContext implements SnippetAcceptingContext
 {
 
+    protected $client = null;
     
+    private $faker;
+    
+    public function __construct()
+    {
+        $this->faker = FakerFactory::create();
+    }
+
+    protected function getServiceProviderName() {
+        return 'bxav_user.service_provider';
+    }
+
     /**
      * @Given I have a customer :username
      */
     public function iHaveACustomer($username)
     {
-        throw new PendingException();
+        var_dump($this->getSoapClient()->__getFunctions());
+        var_dump(@$this->getSoapClient()->createCustomer("dddd"));
     }
     
     /**
-     * @When I check availability for :domain on :tld
+     * @Given I create the customer :name
      */
-    public function iCheckAvailabilityForOn($domain, $tld)
+    public function iCreateTheCustomer($name)
     {
-        throw new PendingException();
+        $this->getSoapClient()->createCustomer($this->faker->safeEmail, $name, $this->faker->firstname, $this->faker->lastname);
     }
     
     /**
-     * @Then I should get available
+     * @Then I should have the customer :name
      */
-    public function iShouldGetAvailable()
+    public function iShouldHaveTheCustomer($name)
     {
-        throw new PendingException();
+        //$this->getDomainSoapClient()->createCustomer($name);
     }
-    
-    /**
-     * @When I register :domain on :tld
-     */
-    public function iRegisterOn($domain, $tld)
-    {
-        throw new PendingException();
-    }
-    
-    /**
-     * @Then I should get register
-     */
-    public function iShouldGetRegister()
-    {
-        throw new PendingException();
-    }
-    
 }

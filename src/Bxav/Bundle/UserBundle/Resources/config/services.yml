@@ -10,6 +10,7 @@ services:
         
     bxav_user.service:
         class: %bxav_user.service.class%
+        arguments: [@doctrine.orm.entity_manager, @=service('security.context').getToken()]
         
     bxav_user.service_provider:
         class: Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider
