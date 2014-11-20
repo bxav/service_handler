@@ -2,32 +2,38 @@
 namespace Bxav\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class User extends BaseUser
 {
 
     protected $id;
-    
-    protected $apiToken = null;
 
+    protected $customers;
+    
     public function __construct()
     {
         parent::__construct();
-        $this->generateApiToken();
+        $this->customers = new ArrayCollection();
     }
     
-    public function hasApiToken()
+    public function getId()
     {
-        return ! is_null($this->apiToken);
+        return $this->id;
     }
-    
-    public function generateApiToken()
+
+    public function hasCustomers()
     {
-        $this->apiToken = md5("uniq_".uniqid());
+        return ! $this->customers->isEmpty();
     }
-    
-    public function getApiToken()
+
+    public function addCustomer(Customer $customer)
     {
-        return $this->apiToken;
+        $this->customers[] = $customer;
+    }
+
+    public function hasCustomer(Customer $customer)
+    {
+        return $this->customers->contains($customer);
     }
 }

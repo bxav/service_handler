@@ -3,7 +3,6 @@ namespace Bxav\Bundle\UserBundle\Service;
 
 class UserService
 {
-    public $test = "coucou"; 
 
     /**
      * 
@@ -11,22 +10,18 @@ class UserService
      * @param string $username
      * @param string $firstname
      * @param string $lastname
-     * @return integer $userId
+     * @param string $company
+     * @param string $phone
+     * @return string
      */
-    public function createUser($email, $username, $firstname, $lastname)
-    {
-        $valid = true;
-        return $valid;
-    }
-    
-    /**
-     * 
-     * @param string $userId
-     * @param string $customerName
-     * @param string $customerEmail
-     */
-    public function addCustomer($userId, $customerName, $customerEmail)
-    {
+    public function createCustomer(
+        $email,
+        $username,
+        $firstname,
+        $lastname,
+        $company,
+        $phone
+    ) {
         return 'coucou';
     }
 }

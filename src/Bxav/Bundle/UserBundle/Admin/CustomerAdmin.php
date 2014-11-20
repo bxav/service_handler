@@ -9,20 +9,21 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class UserAdmin extends Admin
+class CustomerAdmin extends Admin
 {
     
-    protected $baseRoutePattern = 'user';
+    protected $baseRoutePattern = 'customer';
     
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->with('General')
-                ->add('username')
+                ->add('user')
                 ->add('email')
-                ->add('plainPassword', 'text', ['required' => false])
-                ->add('enabled', null, ['required' => false])
+                ->add('username')
+                ->add('firstname')
+                ->add('lastname')
                 ->end();
 
     }
@@ -31,31 +32,22 @@ class UserAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('username')
-            ->add('enabled')
-            ->add('email');
+                ->add('user')
+                ->add('email')
+                ->add('username')
+                ->add('firstname')
+                ->add('lastname');
     }
     
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('username', null, ['route' => ['name' => 'show']])
+            ->addIdentifier('id')
+            ->add('user')
             ->add('email')
-            ->add('enabled', null, array('editable' => true))
-            ->add('createdAt');
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->with('General')
-                ->add('username')
-                ->add('email')
-                ->end();
+            ->add('username')
+            ->add('firstname')
+            ->add('lastname');
     }
 }

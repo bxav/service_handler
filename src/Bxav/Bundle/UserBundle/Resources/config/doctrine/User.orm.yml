@@ -6,9 +6,7 @@ Bxav\Bundle\UserBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
-    fields:
-        apiToken:
-            type: string
-            length: 100
-            nullable: true
-            unique: true
+    oneToMany:
+      customers:
+        targetEntity: Customer
+        mappedBy: user
