@@ -3,6 +3,7 @@ namespace Bxav\Bundle\CommonSoapBundle\Dumper;
 
 use Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider;
 use Zend\Soap\AutoDiscover;
+use Bxav\Bundle\UserBundle\Service\Book;
 
 class ZendWsdlDumper
 {
@@ -18,8 +19,8 @@ class ZendWsdlDumper
         $filePath = $serviceProvider->getWsdlPath();
         
         $autodiscover = new AutoDiscover();
-        $autodiscover->setClass($serviceProvider
-            ->getServiceClassName())
+        $autodiscover->setClass($serviceProvider->getServiceClassName())
+            ->setComplexTypeStrategy(new \Zend\Soap\Wsdl\ComplexTypeStrategy\DefaultComplexType())
             ->setUri($serviceProvider->getUrlLocation())
             ->setServiceName('MySoapService');
         $autodiscover->dump($filePath);

@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Bxav\Bundle\UserBundle\Entity\User;
 use Bxav\Bundle\UserBundle\Entity\Customer;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Bxav\Component\ResellerClub\Model\Phone;
 
 class UserService
 {
@@ -36,7 +37,7 @@ class UserService
      * @param string $username
      * @param string $firstname
      * @param string $lastname
-     * @return string
+     * @return Bxav\Bundle\UserBundle\Service\CustomerStruct
      */
     public function createCustomer($email, $username, $firstname, $lastname)
     {
@@ -51,7 +52,12 @@ class UserService
         $this->em->persist($this->getCurrentUser());
         $this->em->flush();
         
-        return 'coucou';
+        $return = new CustomerStruct($customer);
+        
+        return $return;
         
     }
+    
+    
 }
+

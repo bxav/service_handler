@@ -38,7 +38,7 @@ class UserContext extends SoapContext implements SnippetAcceptingContext
      */
     public function iCreateTheCustomer($name)
     {
-        $this->getSoapClient()->createCustomer($this->faker->safeEmail, $name, $this->faker->firstname, $this->faker->lastname);
+        $return = $this->getSoapClient()->createCustomer($this->faker->safeEmail, $name, $this->faker->firstname, $this->faker->lastname);
     }
     
     /**
