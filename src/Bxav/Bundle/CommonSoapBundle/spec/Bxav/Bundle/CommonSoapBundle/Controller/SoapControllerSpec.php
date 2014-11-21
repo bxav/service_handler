@@ -4,6 +4,7 @@ namespace spec\Bxav\Bundle\CommonSoapBundle\Controller;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider;
+use Bxav\Bundle\CommonSoapBundle\Dumper\ZendWsdlDumper;
 
 class SoapControllerSpec extends ObjectBehavior
 {
@@ -13,9 +14,9 @@ class SoapControllerSpec extends ObjectBehavior
         $this->shouldHaveType('Bxav\Bundle\CommonSoapBundle\Controller\SoapController');
     }
 
-    function let(ServiceProvider $serviceProvider)
+    function let(ServiceProvider $serviceProvider, ZendWsdlDumper $dumper)
     {
-        $this->beConstructedWith($serviceProvider);
+        $this->beConstructedWith($serviceProvider, $dumper);
     }
 
     /**

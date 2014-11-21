@@ -1,0 +1,8 @@
+parameters:
+    #service
+    bxav_common_soap.dumper.class: Bxav\Bundle\CommonSoapBundle\Dumper\ZendWsdlDumper
+
+services:
+
+    bxav_common_soap.dumper:
+        class: %bxav_common_soap.dumper.class%

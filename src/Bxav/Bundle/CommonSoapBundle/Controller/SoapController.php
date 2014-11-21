@@ -7,15 +7,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Zend\Soap\AutoDiscover;
 use Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider;
+use Bxav\Bundle\CommonSoapBundle\Dumper\ZendWsdlDumper;
 
 class SoapController
 {    
     
     protected $serviceProvider;
     
-    public function __construct(ServiceProvider $serviceProvider)
+    protected $dumper;
+    
+    public function __construct(ServiceProvider $serviceProvider, ZendWsdlDumper $dumper)
     {
         $this->serviceProvider = $serviceProvider;
+        $this->dumper = $dumper;
     }
     
     protected function getServiceProvider()
@@ -54,20 +58,7 @@ class SoapController
     public function dumperAction()
     {
 
-        ini_set("soap.wsdl_cache", "0");
-        ini_set("soap.wsdl_cache_enabled", "0");
-
-        ini_set('soap.wsdl_cache_ttl',0);
-        
-
-
-        $filePath = $this->getServiceProvider()->getWsdlPath();
-        
-        $autodiscover = new AutoDiscover();
-        $autodiscover->setClass($this->getServiceProvider()->getServiceClassName())
-            ->setUri($this->getServiceProvider()->getUrlLocation())
-            ->setServiceName('MySoapService');
-        $autodiscover->dump($filePath);
+        $this->dumper->dump($this->getServiceProvider());
         return new Response("OK", 201);
     }
 }

@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             new Bxav\Bundle\UserBundle\BxavUserBundle(),
             
             new Bxav\Bundle\ServiceHandlerBundle\BxavServiceHandlerBundle(),
-            
+            new Bxav\Bundle\CommonSoapBundle\BxavCommonSoapBundle(),
 
             new Sonata\AdminBundle\SonataAdminBundle(),
         );

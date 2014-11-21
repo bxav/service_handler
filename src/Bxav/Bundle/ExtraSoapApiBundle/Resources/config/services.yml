@@ -6,7 +6,7 @@ services:
 
     bxav_extra_soap_api.controller:
         class: Bxav\Bundle\CommonSoapBundle\Controller\SoapController
-        arguments: [@bxav_extra_soap_api.service_provider]
+        arguments: [@bxav_extra_soap_api.service_provider, @bxav_common_soap.dumper]
         
     bxav_extra_soap_api.service:
         class: %bxav_extra_soap_api.service.class%
