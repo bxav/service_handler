@@ -14,6 +14,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 abstract class SoapContext implements KernelAwareContext
 {
     
+    protected $client = null;
+    
     abstract protected function getServiceProviderName();
     
     public function getSoapClient()

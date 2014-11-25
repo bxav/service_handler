@@ -1,6 +1,7 @@
 Bxav\Bundle\UserBundle\Entity\Customer:
     type:  entity
     table: customer
+    repositoryClass: Bxav\Bundle\UserBundle\Entity\CustomerRepository
     id:
         id:
             type: integer

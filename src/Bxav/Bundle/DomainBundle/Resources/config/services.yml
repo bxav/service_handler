@@ -1,6 +1,6 @@
 parameters:
     #service
-    bxav_domain.service.class: Bxav\Bundle\DomainBundle\Service\DemoService
+    bxav_domain.service.class: Bxav\Bundle\DomainBundle\Service\DomainService
 
 services:
 
@@ -10,6 +10,11 @@ services:
         
     bxav_domain.service:
         class: %bxav_domain.service.class%
+        arguments: 
+            - @bxav_reseller_club.domain_register
+            - @bxav_reseller_club.customer_manager
+            - @=service('doctrine.orm.entity_manager').getRepository('BxavDomainBundle:DomainCustomer')
+            - @=service('security.context').getToken()
         
     bxav_domain.service_provider:
         class: Bxav\Bundle\CommonSoapBundle\Model\ServiceProvider

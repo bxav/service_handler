@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             new Bxav\Bundle\ExtraSoapApiBundle\BxavExtraSoapApiBundle(),
             new Bxav\Bundle\ResellerClubBundle\BxavResellerClubBundle(),
             new Bxav\Bundle\UserBundle\BxavUserBundle(),
-            
+            new Bxav\Bundle\DomainBundle\BxavDomainBundle(),
             new Bxav\Bundle\ServiceHandlerBundle\BxavServiceHandlerBundle(),
             new Bxav\Bundle\CommonSoapBundle\BxavCommonSoapBundle(),
 

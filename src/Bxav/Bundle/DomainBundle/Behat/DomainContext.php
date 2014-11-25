@@ -3,6 +3,8 @@ namespace Bxav\Bundle\DomainBundle\Behat;
 
 use Bxav\Bundle\CommonSoapBundle\Behat\SoapContext;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Tester\Exception\PendingException;
+use Bxav\Bundle\UserBundle\Entity\Customer;
 
 /**
  * Defines application features from the specific context.
@@ -10,45 +12,60 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 class DomainContext extends SoapContext implements SnippetAcceptingContext
 {
 
-    
-    /**
-     * @Given I have a customer :username
-     */
-    public function iHaveACustomer($username)
+    protected $lastResponse;
+
+    protected function getServiceProviderName()
     {
-        throw new PendingException();
+        return 'bxav_domain.service_provider';
     }
-    
+
     /**
      * @When I check availability for :domain on :tld
      */
     public function iCheckAvailabilityForOn($domain, $tld)
     {
-        throw new PendingException();
+        $this->lastResponse = $this->getSoapClient()->isDomainAvailable($domain, $tld);
     }
-    
+
     /**
      * @Then I should get available
      */
     public function iShouldGetAvailable()
     {
-        throw new PendingException();
+        if (! $this->lastResponse) {
+            throw new \Exception("domain not available");
+        }
     }
-    
+
     /**
-     * @When I register :domain on :tld
+     * @When I register :domain on :tld for :customerUsername
      */
     public function iRegisterOn($domain, $tld)
     {
-        throw new PendingException();
+        $customer = $this->findOneCustomerByUser('admin');
+        $this->lastResponse = $this->getSoapClient()->registerDomain($domain, $tld, $customer->getId());
     }
-    
+
     /**
      * @Then I should get register
      */
     public function iShouldGetRegister()
     {
-        throw new PendingException();
+        if (! $this->lastResponse) {
+            throw new \Exception("domain not register");
+        }
+    }
+    
+    /**
+     * 
+     * @param string $username
+     * @return Customer
+     */
+    private function findOneCustomerByUser($username)
+    {
+        $user = $this->getService('doctrine.orm.entity_manager')->getRepository('BxavUserBundle:User')->findByUsername($username);
+        $customer = $this->getService('doctrine.orm.entity_manager')->getRepository('BxavUserBundle:Customer')->findOneByUser($user);
+        return $customer;
     }
     
 }

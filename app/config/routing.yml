@@ -6,6 +6,10 @@ bxav_user:
     resource: "@BxavUserBundle/Resources/config/routing.yml"
     prefix:   /api
 
+bxav_domain:
+    resource: "@BxavDomainBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 bxav_extra_soap_api:
     resource: "@BxavExtraSoapApiBundle/Resources/config/routing.yml"
     prefix:   /api

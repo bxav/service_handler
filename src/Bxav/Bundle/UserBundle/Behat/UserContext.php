@@ -10,8 +10,6 @@ use Faker\Factory as FakerFactory;
  */
 class UserContext extends SoapContext implements SnippetAcceptingContext
 {
-
-    protected $client = null;
     
     private $faker;
     
