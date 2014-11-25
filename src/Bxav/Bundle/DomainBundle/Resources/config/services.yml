@@ -13,7 +13,7 @@ services:
         arguments: 
             - @bxav_reseller_club.domain_register
             - @bxav_reseller_club.customer_manager
-            - @=service('doctrine.orm.entity_manager').getRepository('BxavDomainBundle:DomainCustomer')
+            - @=service('doctrine.orm.entity_manager').getRepository('BxavUserBundle:Customer')
             - @=service('security.context').getToken()
         
     bxav_domain.service_provider:

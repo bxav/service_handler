@@ -4,7 +4,7 @@ namespace Bxav\Bundle\DomainBundle\Service;
 use Bxav\Component\ResellerClub\Model\DomainRegister;
 use Bxav\Component\ResellerClub\Model\CustomerManager as ResellerClubManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Bxav\Bundle\DomainBundle\Entity\CustomerRepository;
+use Bxav\Bundle\UserBundle\Entity\CustomerRepository;
 
 class DomainService
 {
@@ -51,12 +51,8 @@ class DomainService
     {
         $customer = $this->customerRepository->setCurrentUser($this->getCurrentUser())
                                              ->findByCurrentUserAndId((int)$idCustomer);
-        $resellerCustomer = $this->manager->findByUsername($customer->getUsername());
-        if ($resellerCustomer == null) {
-            $resellerCustomer = $this->manager->register($customer->createResellerClubCustomer());
-        }
-        $registered = $this->domainRegister->register($domain, $tld, $resellerCustomer);
-        return $registered;
+
+        return $customer;
     }
     
     private function getCurrentUser()
