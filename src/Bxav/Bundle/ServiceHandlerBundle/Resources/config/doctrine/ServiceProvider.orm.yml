@@ -1,0 +1,25 @@
+Bxav\Bundle\ServiceHandlerBundle\Entity\ServiceProvider:
+    type:  entity
+    table: serviceprovider
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        serviceName:
+            type: string
+            length: 255
+            unique: true
+        wsdlUrl:
+            type: string
+            length: 255
+            nullable: false
+        urlLocation:
+            type: string
+            length: 255
+            nullable: false
+        wsdlPath:
+            type: string
+            length: 255
+            nullable: false

@@ -4,6 +4,10 @@ parameters:
     
     bxav_service_handler.service_provider_chain.class: Bxav\Bundle\ServiceHandlerBundle\Model\ServiceProviderChain
 
+
+    bxav_service_handler.command.service_provider.class: Bxav\Bundle\ServiceHandlerBundle\Command\ServiceProviderCommand
+    
+    
 services:
 
     bxav_service_handler.controller:
@@ -24,3 +28,11 @@ services:
             - [setUrlLocation, ["@=service('router').generate('bxav_service_handler_api_manager', [], true)"]]
             - [setWsdlUrl, ["@=service('router').generate('bxav_service_handler_api_manager_wsdl', [], true)"]]
             - [setWsdlPath, ["@=service('kernel').locateResource('@BxavServiceHandlerBundle/Resources/config/service.wsdl')"]]
+
+    bxav_service_handler.command.service_provider:
+        class: %bxav_service_handler.command.service_provider.class%
+        arguments: 
+            - @doctrine.orm.default_entity_manager
+            - @bxav_service_handler.service_provider_chain
+        tags:
+            -  { name: console.command }
